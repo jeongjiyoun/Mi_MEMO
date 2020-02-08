@@ -24,20 +24,19 @@ class SqlLite{
 
   Future<SqlLite> open() async{
     db = await openDatabase(dataBasePath);
-    debugPrint(getList().toString());
     return this;
   }
 
   Future<List<Map>> getList() async{
-    return await db.rawQuery('SELECT indexID, title, contents, writeTime, lastTime FROM memoData1 ORDER BY lastTime DESC ');
+    return await db.rawQuery('SELECT indexID, title, contents, writeTime, lastTime FROM memoData1 ORDER BY lastTime DESC');
   }
 
   Future<List<Map>> getMemo(int currentIndex) async{
     return await db.rawQuery('SELECT indexID, title, contents, writeTime, lastTime FROM memoData1 WHERE indexID = ?',[currentIndex]);
   }
 
-  void deletememoData(int currentIndex){
-    db.rawDelete('DELETE FROM memoData1 WHERE indexID = ?', [currentIndex]);
+  void deletememoData(int currentIndex) {
+    db.rawDelete('DELETE FROM memoData1 WHERE indexID = ?',[currentIndex]);
   }
 
   void deleteMemoAll(){
@@ -50,8 +49,8 @@ class SqlLite{
 
   int insertmemoData(String title, String contents){
     int indexID;
-    String time = DateTime.now().toString();
-    db.rawInsert('INSERT INTO memoData(title, contents, writeTime, lastTime) VALUES (?,?,?,?)',
+    String time = getTimeData();
+    db.rawInsert('INSERT INTO memoData1 (title, contents, writeTime, lastTime) VALUES (?,?,?,?)',
                   [title,contents,time,time]).then((indexID){
                     indexID = indexID;
                 });
@@ -59,8 +58,15 @@ class SqlLite{
   }
 
   void updatememoData(title, contents, indexID){
-    String time = DateTime.now().toString();
-    db.rawQuery('UPDATE memoData SET title = ?, contents = ?, lastTime = ? WHERE indexID = ?',
+    String time = getTimeData();
+    db.rawQuery('UPDATE memoData1 SET title = ?, contents = ?, lastTime = ? WHERE indexID = ?',
                   [title, contents, time, indexID]);
+  }
+
+  String getTimeData(){
+    String now = DateTime.now().toString();
+    String time = now.substring(5,16);
+    print(time);
+    return time;
   }
 }

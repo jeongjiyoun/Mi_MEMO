@@ -15,9 +15,7 @@ class Data {
 
   Future<List<Map>> getMemoList() async{
     open();
-    debugPrint(sqlLite.getList().toString());
     List<Map> memoLIst = await sqlLite.getList();
-    print(memoLIst);
     return memoLIst;
   }
 

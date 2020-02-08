@@ -23,6 +23,7 @@ class MemoList extends StatelessWidget {
           MemoEntity memoEntity = MemoEntity(mapData : data[index]);
           return MemoListOne(
               lastTime : memoEntity.lasttime,
+              contents : memoEntity.contents,
               title : memoEntity.title,
               id : memoEntity.id,
               appData: appData,

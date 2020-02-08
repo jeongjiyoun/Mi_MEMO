@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/global/Data.dart';
 import 'package:flutter_app/module/MemoEntity.dart';
 import 'package:flutter_app/screen/writePage.dart';
+import 'package:flutter_app/widget/loadingPage.dart';
 import 'package:flutter_app/widget/memoList/memoList.dart';
-
-import '../editPage.dart';
 
 class ListPage extends StatefulWidget{
   final Data appData; //AppData
@@ -51,7 +50,12 @@ class _MemoState extends State<ListPage>{
                     icon: const Icon(Icons.mode_edit),
                     tooltip: 'Write',
                     onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => WritePage(null, widget.appData)));
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => WritePage(
+                              new MemoEntity(),
+                              widget.appData)
+                          )
+                      );
                     },
                   ),
                 ],
@@ -59,9 +63,9 @@ class _MemoState extends State<ListPage>{
             ),
           );
         } else if(snapshot.hasError){
-            return Text('It has ERROR');
+            return LoadingPage();
         }
-        return Text('Loading...');
+        return LoadingPage();
       },
     );
   }

@@ -9,9 +9,10 @@ class MemoListOne extends StatelessWidget {
   final String title;
   final String id;
   final String lastTime;
+  final String contents;
   final Data appData;
 
-  MemoListOne({this.title, this.id, this.lastTime, this.appData});
+  MemoListOne({this.title, this.id, this.lastTime, this.appData, this.contents});
 
   @override
   Widget build(BuildContext context) {
@@ -35,18 +36,16 @@ class MemoListOne extends StatelessWidget {
           onTap: () {
               goMemoUpdate(id, context);
           },
-          onLongPress: (){
-              goMemoDelete(id);
-          }
       ),
       );
   }
 
   goMemoUpdate(String id, BuildContext context){
-    MemoEntity memoEntity = new MemoEntity(title: title, id: id, lasttime: lastTime);
+    MemoEntity memoEntity = new MemoEntity(title: title, id: id, lasttime: lastTime, contents: contents);
     Navigator.push(context, MaterialPageRoute(builder: (context) => WritePage(memoEntity, appData)));
   }
-  goMemoDelete(String id){
-    //Will you really delete it? Y/N
+
+  goMemoDelete(String id, BuildContext context, Data appData){
+
   }
 }
