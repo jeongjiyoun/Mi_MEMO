@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/global/Data.dart';
 import 'package:flutter_app/module/MemoEntity.dart';
 import 'package:flutter_app/screen/writePage.dart';
-import 'package:flutter_app/widget/loadingPage.dart';
+import 'package:flutter_app/screen/loadingPage.dart';
 import 'package:flutter_app/widget/memoList/memoList.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ListPage extends StatefulWidget{
   final Data appData; //AppData
@@ -43,7 +44,8 @@ class _MemoState extends State<ListPage>{
               ),
                 backgroundColor: Colors.white,
               appBar: AppBar(
-                title: Text('MI NOTE'),
+                title: Text('MI NOTE',
+                  style: GoogleFonts.autourOne(),),
                 backgroundColor: Color.fromARGB(200, 234, 108, 107),
                 actions: <Widget>[
                   IconButton(

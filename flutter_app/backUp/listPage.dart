@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/editPage.dart';
 import 'package:flutter_app/global/sharedPre.dart';
+
+import 'editPage.dart';
 
 class ListPage extends StatefulWidget {
   @override

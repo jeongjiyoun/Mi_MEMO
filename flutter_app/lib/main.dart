@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/global/Data.dart';
 import 'package:flutter_app/screen/listPage.dart';
-import 'package:flutter_app/widget/loadingPage.dart';
+import 'package:flutter_app/screen/loadingPage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() => runApp(new MyApp()) ;
@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget{
                 ).copyWith(
                 ),
               ),
+           // home : TESTPage(),
             home: ListPage(appData: snapshot.data),
           );
         } else if(snapshot.hasError){

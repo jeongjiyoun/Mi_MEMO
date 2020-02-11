@@ -4,6 +4,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter_app/global/Data.dart';
 import 'package:flutter_app/module/MemoEntity.dart';
 import 'package:flutter_app/screen/writePage.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MemoListOne extends StatelessWidget {
   final String title;
@@ -25,6 +26,7 @@ class MemoListOne extends StatelessWidget {
             style: const TextStyle(
               fontSize: 20.0,
               color: Colors.black87,
+
             ),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,

@@ -6,7 +6,6 @@ import 'package:flutter_app/global/mySpecialTextBuilder.dart';
 import 'package:flutter_app/module/MemoEntity.dart';
 import 'package:flutter_app/module/BGWrite.dart';
 import 'package:flutter_app/screen/listPage.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class WritePage extends StatefulWidget{
   final MemoEntity memoEntity;
@@ -46,7 +45,6 @@ class _WriteState extends State<WritePage>{
   @override
   Widget build(BuildContext context) {
     init();
-    FocusScope.of(context).autofocus(_focusNode);
     return Container(
       child: Scaffold(
         body: Container(
@@ -64,51 +62,36 @@ class _WriteState extends State<WritePage>{
                     hintColor: Colors.grey[700],
                   ),
                     child: Container(
-                      child: ExtendedTextField(
-                        key: _key,
-                        specialTextSpanBuilder: MySpecialTextSpanBuilder(
-                          showAtBackground: true,
-                        ),
-                        expands: true,
-                        controller: _textEditingController,
-                        textSelectionControls: _myControls,
-                        maxLines: null,
-                        focusNode: _focusNode,
-                        decoration: InputDecoration(
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                sessions.insert(0, _textEditingController.text);
-                                _textEditingController.value =
-                                    _textEditingController.value.copyWith(
-                                        text: "XTX",
-                                        selection: TextSelection.collapsed(offset: 0),
-                                        composing: TextRange.empty
-                                    );
-                                print(sessions.toString());
-                                widget.memoEntity.contents = _textEditingController.text;
-                              });
-                            },
-                            child:FlatButton.icon(
-                              icon: Icon(Icons.lock),
-                              label: Text(''),
-                              onPressed: (){
+                        child: ExtendedTextField(
+                          key: _key,
+                          specialTextSpanBuilder: MySpecialTextSpanBuilder(
+                            showAtBackground: true,
+                          ),
+                          controller: _textEditingController,
+                          textSelectionControls: _myControls,
+                          maxLines: null,
+                          expands: true,
+                          focusNode: _focusNode,
+                          decoration: InputDecoration(
+                            suffixIcon: GestureDetector(
+                              onTap: () {
                                 setState(() {
-                                  _textEditingController.text = _textEditingController.text + "@MI";
                                   sessions.insert(0, _textEditingController.text);
-                                  widget.memoEntity.contents = _textEditingController.text;
-                                  _textEditingController = TextEditingController.fromValue(new TextEditingValue(text: widget.memoEntity.contents,
-                                      selection: new TextSelection.collapsed(offset: widget.memoEntity.contents.length
-                                      )
-                                  )
-                                  );
+                                  _textEditingController.value =
+                                      _textEditingController.value.copyWith(
+                                          text: "",
+                                          selection: TextSelection.collapsed(offset: 0),
+                                          composing: TextRange.empty);
                                 });
                               },
+                              child: Icon(Icons.send),
                             ),
                           ),
-                        ),
-                        //textDirection: TextDirection.rtl,
-                      ),
+                          //textDirection: TextDirection.rtl,
+                        )
+
+
+
                     ),
                   ),
                 ),
@@ -117,8 +100,7 @@ class _WriteState extends State<WritePage>{
           ),
         ),
         appBar :  AppBar(
-          title: Text('MI NOTE',
-          style: GoogleFonts.autourOne(),),
+          title: Text('MI NOTE'),
           backgroundColor: Color.fromARGB(200, 234, 108, 107),
           actions: <Widget>[
             IconButton(
@@ -204,3 +186,4 @@ class _WriteState extends State<WritePage>{
     return title;
   }
 }
+
